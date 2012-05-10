@@ -1,0 +1,13 @@
+sbytnar/mspdebug-patches
+=============
+
+This code was forked from git://mspdebug.git.sourceforge.net/gitroot/mspdebug/mspdebug.
+
+My patches add support for debugging under Mac OS X Power PC.
+The patches likely support any system that is big endian.
+I didn't test the patches on little endian, so the patches
+may require minor changes to support both big & little endian
+systems.
+
+--Steven Bytnar
+

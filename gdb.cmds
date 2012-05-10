@@ -1,0 +1,9 @@
+# "sym import ../demo-breathing-led/a.elf" \
+
+run \
+rf2500 \
+"prog ../demo-breathing-led/a.elf" \
+"sym find .*" \
+"setbreak main" \
+"break"
+

@@ -1,6 +1,7 @@
 # MSPDebug - debugging tool for the eZ430
 # Copyright (C) 2009, 2010 Daniel Beer
 # Copyright (C) 2010 Andrew Armenia
+# Copyright (C) 2011 Steven Bytnar
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,8 +32,10 @@ endif
 
 UNAME := $(shell sh -c 'uname -s')
 ifeq ($(UNAME),Darwin) # Mac OS X/MacPorts stuff
-	PORTS_CFLAGS = -I/opt/local/include
-	PORTS_LDFLAGS = -L/opt/local/lib
+	#PORTS_CFLAGS = -I/opt/local/include -Wall -pedantic
+	#PORTS_LDFLAGS = -L/opt/local/lib -lelf
+	PORTS_CFLAGS = `pkg-config --clfags libelf` -Wall -pedantic
+	PORTS_LDFLAGS = `pkg-config --libs libelf`
 else
   ifeq ($(UNAME),OpenBSD) # OpenBSD Ports stuff
 	PORTS_CFLAGS = `pkg-config --cflags libelf libusb`
@@ -43,7 +46,10 @@ else
   endif
 endif
 
-MSPDEBUG_CFLAGS = -O1 -Wall -Wno-char-subscripts -ggdb
+#MSPDEBUG_CFLAGS = -O1 -Wall -Wno-char-subscripts -ggdb
+MSPDEBUG_CFLAGS = -O1 -Wall -Wno-char-subscripts -g
+# Note: -O2 causes the symbol table to not be readable.
+# Note: On Mac OS X, -ggdb doesn't produce a debuggable binary.
 
 all: mspdebug
 

@@ -55,3 +55,8 @@ Ionut Nicu <ionut.nicu@mindbit.ro>:
 
 Paul Fleischer <paul@xpg.dk>:
 	* Support for MSP430G2553.
+
+Steven Bytnar <smbgithub+mspdebugbe110604@bytnar.net>:
+	* Support for big endian host systems.
+	* Change some porting parameters for Mac OS X.
+
